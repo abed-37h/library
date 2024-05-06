@@ -93,6 +93,46 @@ main {
     margin-bottom: 64px;
 }
 
+#available-books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+
+    margin-bottom: 32px;
+}
+
+.book-card {
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.cover-image {
+    width: 100%;
+}
+
+.book-info {
+    align-self: flex-start;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.book-info-wrapper {
+    display: flex;
+    gap: 4px;
+}
+
+.book-info-label {
+    font-weight: bold;
+}
+
 button {
     padding: 16px 24px;
     border-radius: 8px;
