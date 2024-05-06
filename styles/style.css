@@ -1,0 +1,145 @@
+
+* {
+    font-family: Roboto;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    margin: 16px 0;
+}
+
+h1 {
+    font-size: 3.815rem;
+}
+
+h2 {
+    font-size: 3.052rem;
+}
+
+h3 {
+    font-size: 2.441rem;
+}
+
+h4 {
+    font-size: 1.953rem;
+}
+
+h5 {
+    font-size: 1.563rem;
+}
+
+h6 {
+    font-size: 1.25rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+.icon {
+    width: 25px;
+}
+
+img[alt=library-logo] {
+    width: 50px;
+}
+
+header {
+    height: 100vh;
+    background-color: #e4dedd;
+    color: #0f0f0f;
+    padding: 32px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+}
+
+.menu {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+    font-size: large;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+input[type=search] {
+    flex-grow: 1;
+    height: 48px;
+    padding: 8px 24px;
+    line-height: 2;
+    font-size: large;
+    border-radius: 8px;
+}
+
+#hero {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 calc(100vw / 3)
+}
+
+main {
+    padding: 16px calc(10vw);
+    margin-bottom: 64px;
+}
+
+button {
+    padding: 16px 24px;
+    border-radius: 8px;
+    background-color: #0f0f0f;
+    color: #e4dedd;
+    font-weight: bold;
+}
+
+button:hover {
+    box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    box-shadow: none;
+}
+
+footer {
+    background-color: #e4dedd;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+footer .site-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.copyright {
+    display: flex;
+    justify-content: center;
+}
+
+.site-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.developer-info > p {
+    margin-bottom: 8px;
+}
+
+.social-media a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
