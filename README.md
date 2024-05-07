@@ -14,8 +14,8 @@ Check the live demo [here](https://abed-37h.github.io/library)
 
 ## Future additions
 
-- [] Add a link to the actual book so that the user can browse and read it
-- [] Add a sign up feature so that only admins can add and remove books and the users only read them
+- [ ] Add a link to the actual book so that the user can browse and read it
+- [ ] Add a sign up feature so that only admins can add and remove books and the users only read them
 
 ## What I've added to my skill set?
 
