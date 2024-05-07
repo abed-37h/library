@@ -3,7 +3,7 @@
 const library = [];
 let id = 0;
 
-function Book(isbn, title, author, pages, read = false, coverImage = './images/default-cover-image.jpg') {
+function Book(isbn, title, author, pages, read = false, coverImage = '') {
     this.isbn = isbn;
     this.title = title;
     this.author = author;
@@ -12,8 +12,9 @@ function Book(isbn, title, author, pages, read = false, coverImage = './images/d
     this.coverImage = coverImage;
 }
 
-function addBookToLibrary(title, author, pages, read = false, coverImage = './images/default-cover-image.jpg') {
-    library.push(new Book(++id, title, author, pages, read, coverImage));
+function addBookToLibrary(title, author, pages, read = false, coverImage = '') {
+    library.push(new Book(++id, title, author, pages, read, 
+        coverImage === '' ? './images/default-cover-image.jpg' : coverImage));
 }
 
 function displayAllBooks() {
@@ -60,6 +61,50 @@ function displayBook(book) {
     bookCard.append(coverImage, bookInfo, readStatus);
     availableBooks.appendChild(bookCard);
 }
+
+const body = document.querySelector('body');
+const addBookDialog = document.querySelector('dialog');
+const addBookForm = document.querySelector('form');
+const addBookBtn = document.querySelector('.add-book-btn');
+const cancelBtn = document.querySelector('.cancel-btn');
+const confirmBtn = document.querySelector('.confirm-btn');
+
+addBookBtn.addEventListener('click', () => {
+    addBookDialog.showModal();
+    body.classList.add('modal-open');
+});
+
+cancelBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    addBookDialog.close();
+    body.classList.remove('modal-open');
+});
+
+addBookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    addBookDialog.close();
+    body.classList.remove('modal-open');
+
+    const data = new FormData(event.target);
+
+    addBookToLibrary(
+        data.get('title'),
+        data.get('author'),
+        data.get('pages'),
+        data.get('read'),
+        (data.get('cover-image').name != '') ? URL.createObjectURL(data.get('cover-image')) : ''
+    );
+
+    displayBook(library[library.length - 1]);
+});
+
+addBookDialog.addEventListener('close', () => {
+    const inputs = Array.from(addBookForm.querySelectorAll('input'));
+
+    for (let input of inputs) {
+        input.value = ''
+    }
+});
 
 addBookToLibrary('Sahih Al-Bukhari', 'Imam. Mohammad Bin Ismail Al-Bukhari', 3416, false, './images/sahih-al-bukhari-cover-image.png');
 addBookToLibrary('Sahih Muslim', 'Imam. Muslim Bin Al-Hajjaj An-Naisaburi', 2933, false, './images/sahih-muslim-cover-image.png');

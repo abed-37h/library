@@ -32,6 +32,40 @@
 
         <div id="available-books"></div>
 
+        <dialog>
+            <form action="#" method="get">
+                <div class="input-wrapper">
+                    <label for="title">Title<span title="required" aria-label="required"></span></label>
+                    <input type="text" name="title" id="title" placeholder="Title" required autofocus>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="author">Author<span title="required" aria-label="required"></span></label>
+                    <input type="text" name="author" id="author" placeholder="Author" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="pages">Pages<span title="required" aria-label="required"></span></label>
+                    <input type="number" name="pages" id="pages" placeholder="Pages" required>
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="read">Did you read the book?</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="cover-image">Add a cover image for the book</label>
+                    <input type="file" name="cover-image" id="cover-image" accept="image">
+                </div>
+                
+                <div class="form-buttons-wrapper">
+                    <button class="cancel-btn" formmethod="dialog" type="button">Cancel</button>
+                    <button class="confirm-btn">Confirm</button>
+                </div>
+            </form>
+        </dialog>
+
         <button class="add-book-btn">Add new book</button>
     </main>
 

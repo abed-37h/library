@@ -133,12 +133,97 @@ main {
     font-weight: bold;
 }
 
+dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 32px;
+    border-radius: 8px;
+    box-shadow: 4px 4px 16px 0 rgba(0, 0, 0, 0.35);
+}
+
+::backdrop {
+    backdrop-filter: blur(3px);
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-wrapper:nth-of-type(4) {
+    flex-direction: row;
+    gap: 8px;
+}
+
+label {
+    font-size: .9rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+label > span::after {
+    content: "*";
+    color: #f00;
+}
+
+.form-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+input[type=text],
+input[type=number] {
+    padding: 8px 12px;
+    height: 36px;
+    width: 300px;
+    border-radius: 4px;
+    border: 1px solid #E5E7EB;
+    font-size: 1rem;
+}
+
+input[type=text]:focus,
+input[type=number]:focus {
+    outline: none;
+    border: 1px solid #00f;
+    box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+input[type=text]:invalid,
+input[type=number]:invalid {
+    border-color: #f00;
+}
+
+input[type=checkbox] {
+    transform: scale(1.2);
+}
+
+input[type=file] {
+    border: 1px dotted black;
+    padding: 4px;
+    width: 300px;
+}
+
 button {
     padding: 16px 24px;
     border-radius: 8px;
     background-color: #0f0f0f;
     color: #e4dedd;
     font-weight: bold;
+    border: none;
 }
 
 button:hover {
@@ -147,6 +232,12 @@ button:hover {
 
 button:active {
     box-shadow: none;
+}
+
+
+.cancel-btn {
+    background-color: #e4dedd;
+    color: #0f0f0f;
 }
 
 footer {
