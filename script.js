@@ -1,6 +1,6 @@
 
 
-const library = [];
+let library = [];
 let id = 0;
 
 function Book(isbn, title, author, pages, read = false, coverImage = '') {
@@ -72,6 +72,8 @@ function displayBook(book) {
     removeBookBtn.addEventListener('click', () => {
         library.splice(bookCard.dataset.index, 1);
         bookCard.remove();
+
+        localStorage.setItem('library', JSON.stringify(library));
     });
 
     toggleReadStatusBtn.addEventListener('click', () => {
@@ -86,6 +88,8 @@ function displayBook(book) {
             readStatus.textContent = 'Already read';
             toggleReadStatusBtn.textContent = 'Mark not read';
         }
+
+        localStorage.setItem('library', JSON.stringify(library));
     });
 
     actionBtns.append(removeBookBtn, toggleReadStatusBtn);
@@ -126,6 +130,7 @@ addBookForm.addEventListener('submit', (event) => {
         (data.get('cover-image').name != '') ? URL.createObjectURL(data.get('cover-image')) : ''
     );
 
+    localStorage.setItem('library', JSON.stringify(library));
     displayBook(library[library.length - 1]);
 });
 
@@ -137,8 +142,18 @@ addBookDialog.addEventListener('close', () => {
     }
 });
 
-addBookToLibrary('Sahih Al-Bukhari', 'Imam. Mohammad Bin Ismail Al-Bukhari', 3416, false, './images/sahih-al-bukhari-cover-image.png');
-addBookToLibrary('Sahih Muslim', 'Imam. Muslim Bin Al-Hajjaj An-Naisaburi', 2933, false, './images/sahih-muslim-cover-image.png');
-addBookToLibrary('Riyad Al-Saleheen', 'Imam. Yahia Ibn Sharaf An-Nawawi', 680);
+addEventListener('load', () => {
+    if (localStorage.getItem('library')) {
+        library = JSON.parse(localStorage.getItem('library'));
+    }
+    else {
+        addBookToLibrary('Sahih Al-Bukhari', 'Imam. Mohammad Bin Ismail Al-Bukhari', 3416, false, './images/sahih-al-bukhari-cover-image.png');
+        addBookToLibrary('Sahih Muslim', 'Imam. Muslim Bin Al-Hajjaj An-Naisaburi', 2933, false, './images/sahih-muslim-cover-image.png');
+        addBookToLibrary('Riyad Al-Saleheen', 'Imam. Yahia Ibn Sharaf An-Nawawi', 680);
+        
+        localStorage.setItem('library', JSON.stringify(library));
+    }
+    
+    displayAllBooks();
+});
 
-displayAllBooks();
