@@ -266,8 +266,19 @@ footer .site-info {
     gap: 8px;
 }
 
+.others {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
 .developer-info > p {
     margin-bottom: 8px;
+}
+
+.attribution a {
+    text-decoration: underline;
 }
 
 .social-media a {
