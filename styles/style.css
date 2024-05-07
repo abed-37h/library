@@ -179,6 +179,7 @@ label > span::after {
     color: #f00;
 }
 
+.action-btns,
 .form-buttons-wrapper {
     display: flex;
     justify-content: center;
@@ -224,6 +225,7 @@ button {
     color: #e4dedd;
     font-weight: bold;
     border: none;
+    text-wrap: nowrap;
 }
 
 button:hover {
@@ -234,7 +236,7 @@ button:active {
     box-shadow: none;
 }
 
-
+.remove-book-btn,
 .cancel-btn {
     background-color: #e4dedd;
     color: #0f0f0f;

@@ -28,7 +28,7 @@ function displayBook(book) {
 
     const bookCard = document.createElement('div');
     bookCard.className = 'book-card';
-    bookCard.id = 'b' + book.isbn;
+    bookCard.dataset.index = library.indexOf(book);
 
     const coverImage = document.createElement('img');
     coverImage.src = book.coverImage;
@@ -58,7 +58,38 @@ function displayBook(book) {
     readStatus.className = 'read-status';
     readStatus.textContent = book.read ? 'Already read' : 'Not read yet';
 
-    bookCard.append(coverImage, bookInfo, readStatus);
+    const actionBtns = document.createElement('div');
+    actionBtns.className = 'action-btns';
+
+    const removeBookBtn = document.createElement('button');
+    removeBookBtn.className = 'remove-book-btn';
+    removeBookBtn.textContent = 'Remove book';
+    
+    const toggleReadStatusBtn = document.createElement('button');
+    toggleReadStatusBtn.className = 'toggle-read-btn';
+    toggleReadStatusBtn.textContent = book.read ? 'Mark not read' : 'Mark read';
+
+    removeBookBtn.addEventListener('click', () => {
+        library.splice(bookCard.dataset.index, 1);
+        bookCard.remove();
+    });
+
+    toggleReadStatusBtn.addEventListener('click', () => {
+        if (book.read) {
+            book.read = false;
+            readStatus.textContent = 'Not read yet';
+            toggleReadStatusBtn.textContent = 'Mark read';
+        }
+
+        else {
+            book.read = true;
+            readStatus.textContent = 'Already read';
+            toggleReadStatusBtn.textContent = 'Mark not read';
+        }
+    });
+
+    actionBtns.append(removeBookBtn, toggleReadStatusBtn);
+    bookCard.append(coverImage, bookInfo, readStatus, actionBtns);
     availableBooks.appendChild(bookCard);
 }
 
