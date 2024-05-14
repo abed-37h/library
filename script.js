@@ -71,25 +71,20 @@ function displayBook(book) {
 
     removeBookBtn.addEventListener('click', () => {
         library.splice(bookCard.dataset.index, 1);
-        bookCard.remove();
 
         localStorage.setItem('library', JSON.stringify(library));
+
+        availableBooks.textContent = '';
+        displayAllBooks();
     });
 
     toggleReadStatusBtn.addEventListener('click', () => {
-        if (book.read) {
-            book.read = false;
-            readStatus.textContent = 'Not read yet';
-            toggleReadStatusBtn.textContent = 'Mark read';
-        }
-
-        else {
-            book.read = true;
-            readStatus.textContent = 'Already read';
-            toggleReadStatusBtn.textContent = 'Mark not read';
-        }
+        book.read = !book.read;
 
         localStorage.setItem('library', JSON.stringify(library));
+
+        availableBooks.textContent = '';
+        displayAllBooks();
     });
 
     actionBtns.append(removeBookBtn, toggleReadStatusBtn);
@@ -131,7 +126,9 @@ addBookForm.addEventListener('submit', (event) => {
     );
 
     localStorage.setItem('library', JSON.stringify(library));
-    displayBook(library[library.length - 1]);
+
+    document.querySelector('#available-books').textContent = '';
+    displayAllBooks();
 });
 
 addBookDialog.addEventListener('close', () => {
