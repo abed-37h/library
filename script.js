@@ -3,14 +3,81 @@
 let library = [];
 let id = 0;
 
-function Book(isbn, title, author, pages, read = false, coverImage = '') {
-    this.isbn = isbn;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.coverImage = coverImage;
-}
+class Book {
+    #isbn;
+    #title;
+    #author;
+    #pages;
+    #read;
+    #coverImage;
+    
+    constructor(_isbn, _title, _author, _pages, _read = false, _coverImage = '') {
+        this.#isbn = _isbn;
+        this.#title = _title;
+        this.#author = _author;
+        this.#pages = _pages;
+        this.#read = _read;
+        this.#coverImage = _coverImage;
+    }
+
+    // Override toJSON() method
+    // This method is used internally by JSON.stringify() method
+    // This is necessary to save objects properly in localStorage
+    toJSON() {
+        return {
+            isbn: this.#isbn,
+            title: this.#title,
+            author: this.#author,
+            pages: this.#pages,
+            read: this.#read,
+            coverImage: this.#coverImage,
+        };
+    }
+
+    // This does the opposite of the above one
+    // It is used to retrieve the book as an instance of Book class
+    static fromJSON(serializedJSON) {
+        return new Book(...Object.values(serializedJSON));
+    }
+
+    get isbn() {
+        return this.#isbn;
+    }
+    get title() {
+        return this.#title;
+    }
+    get author() {
+        return this.#author;
+    }
+    get pages() {
+        return this.#pages;
+    }
+    get read() {
+        return this.#read;
+    }
+    get coverImage() {
+        return this.#coverImage;
+    }
+
+    set isbn(_isbn) {
+        this.#isbn = _isbn;
+    }
+    set title(_title) {
+        this.#title = _title;
+    }
+    set author(_author) {
+        this.#author = _author;
+    }
+    set pages(_pages) {
+        this.#pages = _pages;
+    }
+    set read(_read) {
+        this.#read = _read;
+    }
+    set coverImage(_coverImage) {
+        this.#coverImage = _coverImage;
+    }
+};
 
 function addBookToLibrary(title, author, pages, read = false, coverImage = '') {
     library.push(new Book(++id, title, author, pages, read, 
@@ -142,6 +209,10 @@ addBookDialog.addEventListener('close', () => {
 addEventListener('load', () => {
     if (localStorage.getItem('library')) {
         library = JSON.parse(localStorage.getItem('library'));
+
+        for (let i = 0; i < library.length; i++) {
+            library[i] = Book.fromJSON(library[i]);
+        }
     }
     else {
         addBookToLibrary('Sahih Al-Bukhari', 'Imam. Mohammad Bin Ismail Al-Bukhari', 3416, false, './images/sahih-al-bukhari-cover-image.png');
